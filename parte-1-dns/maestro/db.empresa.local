@@ -1,0 +1,35 @@
+$TTL    604800
+@       IN      SOA     empresa.local. root.empresa.local. (
+                        2026090301      ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+
+; Registro NS: Servidores Autoritavos de la zona
+@       IN      NS      maestro.empresa.local.
+@       IN      NS      esclavo.empresa.local.
+
+; Registros MX: Servidor de correo prioridad ID
+@       IN      MX      10      mail.empresa.local.
+
+; Registros A: Nombre de dominio -> IPv4
+maestro IN      A       192.168.50.2
+esclavo IN      A       192.168.50.3
+ns1     IN      A       192.168.50.2
+ns2     IN      A       192.168.50.3
+www     IN      A       192.168.50.10
+mail    IN      A       192.168.50.11
+test    IN      A       192.168.50.99
+test2   IN      A       192.168.50.12
+
+; Registros AAAA: Nombre de dominio -> IPv6
+maestro IN      AAAA    fd00:50:168:192::2
+esclavo IN      AAAA    fd00:50:168:192::3
+ns1     IN      AAAA    fd00:50:168:192::2
+ns2     IN      AAAA    fd00:50:168:192::3
+www     IN      AAAA    fd00:50:168:192::10
+mail    IN      AAAA    fd00:50:168:192::11
+
+; CNAME: Alias
+ftp     IN      CNAME   www

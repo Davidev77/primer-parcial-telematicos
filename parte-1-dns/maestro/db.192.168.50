@@ -1,0 +1,17 @@
+$TTL 604800
+@       IN      SOA     maestro.empresa.local. root.empresa.local. (
+                                2026090201      ; Serial (AAAAMMDDNN)
+                                604800          ; Refresh - 7 días
+                                86400           ; Retry - 1 día
+                                2419200         ; Expire - 28 días
+                                604800 )        ; Negative Cache TTL - 7 días
+
+; Registros NS: Ambos servidores son autoritativos
+@       IN      NS      maestro.empresa.local.
+@       IN      NS      esclavo.empresa.local.
+
+; Registros PTR: <último octeto> IN PTR <nombre_FQDN_con_punto_final>
+2       IN      PTR     maestro.empresa.local.
+3       IN      PTR     esclavo.empresa.local.
+10      IN      PTR     www.empresa.local.
+11      IN      PTR     mail.empresa.local.
