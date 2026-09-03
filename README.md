@@ -12,7 +12,7 @@
 
 - **Eddie Santiago Delgado Campo**
 - **Sebastian Leiton Goyes**
-- **Christian David Home**
+- **Christian David Home Acero**
 
 ---
 
