@@ -1,0 +1,21 @@
+acl "red-local" {
+    192.168.50.0/24;
+};
+
+options {
+    directory "/var/cache/bind";
+
+    // Solo las IPs de la red local pueden consultar este DNS
+    allow-query { "red-local"; };
+
+    //Deniega la transferencia de zonas por defecto a nivel global, aunque luego en named.conf.local se sobrescribe.
+    allow-transfer { none; };
+    recursion no;
+    rate-limit {
+        responses-per-second 10;
+        window 5;
+    };
+
+    dnssec-validation auto;
+    listen-on-v6 { any; };
+};
