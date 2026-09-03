@@ -1,0 +1,43 @@
+include "/etc/bind/keys/esclavo.key";
+
+zone "empresa.local" {
+    type slave;                              
+    masters { 192.168.50.2 key "esclavo-key"; };           
+    file "/var/cache/bind/db.empresa.local";
+};
+
+zone "50.168.192.in-addr.arpa" {
+    type slave;
+    masters { 192.168.50.2 key "esclavo-key"; };
+    file "/var/cache/bind/db.192.168.50";
+};
+
+logging {
+    // Definición de Canales
+    channel queries_log {
+        file "/var/log/named/queries.log" versions 3 size 10m;
+        severity info;
+        print-time yes;
+        print-category yes;
+    };
+
+    channel transfers_log {
+        file "/var/log/named/transfers.log" versions 3 size 10m;
+        severity info;
+        print-time yes;
+        print-category yes;
+    };
+
+    channel security_log {
+        file "/var/log/named/security.log" versions 3 size 10m;
+        severity info;
+        print-time yes;
+        print-category yes;
+    };
+
+    // Asociación de Categorías
+    category queries { queries_log; };
+    category xfer-in { transfers_log; };
+    category security { security_log; };
+};
+
